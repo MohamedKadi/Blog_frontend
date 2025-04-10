@@ -56,22 +56,34 @@ const BlogCard = ({ show }) => {
       </div>
     );
   }
-
-  return (
-    <div className="flex flex-wrap justify-center mt-3 mx-8 mb-5">
-      <h1 className="text-center font-bold text-2xl">Latest 3 BLOGS</h1>
-      {data.length > 0 ? (
-        data.slice(0, 3).map((item) => <Blog item={item} />)
-      ) : (
-        <p className="text-center">No blog posts available</p>
-      )}
-      <Link
-        className=" border px-5 py-2 rounded-xl hover:bg-blue-500 hover:scale-110 transition duration-300 ease-in-out"
-        to="/blogs"
-      >
-        More...
-      </Link>
-    </div>
-  );
+  if (!show) {
+    return (
+      <div className="flex flex-wrap justify-center mt-3 mx-8 mb-5">
+        <h1 className="text-center font-bold text-2xl">Latest 3 BLOGS</h1>
+        {data.length > 0 ? (
+          data.slice(0, 3).map((item) => <Blog item={item} />)
+        ) : (
+          <p className="text-center">No blog posts available</p>
+        )}
+        <Link
+          className=" border px-5 py-2 rounded-xl hover:bg-blue-500 hover:scale-110 transition duration-300 ease-in-out"
+          to="/blogs"
+        >
+          More...
+        </Link>
+      </div>
+    );
+  } else {
+    return (
+      <div className="flex flex-wrap justify-center mt-3 mx-8 mb-5">
+        <h1 className="text-center font-bold text-2xl">BLOGS</h1>
+        {data.length > 0 ? (
+          data.map((item) => <Blog item={item} />)
+        ) : (
+          <p className="text-center">No blog posts available</p>
+        )}
+      </div>
+    );
+  }
 };
 export default BlogCard;

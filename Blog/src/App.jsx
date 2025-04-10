@@ -1,4 +1,5 @@
 import Navbar from './components/layout/Navbar';
+import BlogsPage from './pages/BlogsPage';
 import HomePage from './pages/HomePage';
 import NotFound from './pages/NotFound';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
@@ -18,6 +19,7 @@ function App() {
       element: <Layout />,
       children: [
         { path: '/', element: <HomePage /> },
+        { path: '/blogs', element: <BlogsPage /> },
         { path: '*', element: <NotFound /> },
       ],
     },

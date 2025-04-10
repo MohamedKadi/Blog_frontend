@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import Blog from './Blog';
 
-const BlogCard = () => {
+const BlogCard = ({ show }) => {
   const apiUrl = import.meta.env.VITE_API_URL;
   const [data, setData] = useState([]); // Initialize as empty array
   const [loading, setLoading] = useState(true);
@@ -59,38 +61,16 @@ const BlogCard = () => {
     <div className="flex flex-wrap justify-center mt-3 mx-8 mb-5">
       <h1 className="text-center font-bold text-2xl">Latest 3 BLOGS</h1>
       {data.length > 0 ? (
-        data.slice(0, 3).map((item) => (
-          <div
-            key={item.id}
-            className="border w-full mx-4 my-4 px-8 py-4 hover:scale-102 transition duration-300 ease-in-out cursor-pointer"
-          >
-            <h3>
-              <span className="font-bold">Title:</span> {item.title}
-            </h3>
-            <p>
-              <span className="font-bold">Content:</span>{' '}
-              {item.content?.substring(0, 100) + '...' ||
-                'No content available'}
-            </p>
-            <p>
-              <span className="font-bold">By:</span>{' '}
-              {item.author.username || 'Unknown'}
-            </p>
-            <p>
-              <span className="font-bold">Categories:</span>{' '}
-              {item.categories ? item.categories.join(', ') : 'Uncategorized'}
-            </p>
-          </div>
-        ))
+        data.slice(0, 3).map((item) => <Blog item={item} />)
       ) : (
         <p className="text-center">No blog posts available</p>
       )}
-      <a
+      <Link
         className=" border px-5 py-2 rounded-xl hover:bg-blue-500 hover:scale-110 transition duration-300 ease-in-out"
-        href=""
+        to="/blogs"
       >
         More...
-      </a>
+      </Link>
     </div>
   );
 };

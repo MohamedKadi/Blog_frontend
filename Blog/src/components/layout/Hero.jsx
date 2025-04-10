@@ -11,7 +11,7 @@ const Hero = () => {
         Browse, search, create etc..., or let Bloggy pick the perfect Blogs to
         read tonight.
       </p>
-      <Button content="Start Writing" to="" />
+      <Button content="Start Writing" to="/create-blog" />
     </div>
   );
 };

@@ -34,7 +34,7 @@ const Login = () => {
       const result = await response.json();
 
       login(result.token);
-      navigate('/');
+      navigate('/blogs');
     } catch (error) {
       console.error('Registration error:', error);
     }

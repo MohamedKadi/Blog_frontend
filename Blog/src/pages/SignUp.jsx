@@ -1,10 +1,23 @@
 import React from 'react';
 import { useState } from 'react';
+import { useAuth } from '../context/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [pwd, setPwd] = useState('');
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    login(username, email);
+    navigate('/blogs');
+  };
   return (
     <div className="w-full mt-35 flex justify-center">
-      <form className="w-full max-w-sm">
+      <form onSubmit={handleSubmit} className="w-full max-w-sm">
         <div className="md:flex md:items-center mb-6">
           <div className="md:w-1/3">
             <label
@@ -20,6 +33,7 @@ const SignUp = () => {
               id="inline-full-name"
               type="text"
               placeholder="Username"
+              onChange={(e) => setUsername(e.target.value)}
             ></input>
           </div>
         </div>
@@ -38,6 +52,7 @@ const SignUp = () => {
               id="inline-email"
               type="text"
               placeholder="Email"
+              onChange={(e) => setEmail(e.target.value)}
             ></input>
           </div>
         </div>
@@ -56,6 +71,7 @@ const SignUp = () => {
               id="inline-password"
               type="password"
               placeholder="******************"
+              onChange={(e) => setPwd(e.target.value)}
             ></input>
           </div>
         </div>
@@ -64,7 +80,7 @@ const SignUp = () => {
           <div className="md:w-2/3">
             <button
               className="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-              type="button"
+              type="submit"
             >
               Sign Up
             </button>

@@ -1,10 +1,14 @@
 import React from 'react';
-
+import { useNavigate } from 'react-router-dom';
 const Blog = ({ item }) => {
+  const navigate = useNavigate();
   return (
     <div
       key={item.id}
       className="border w-full mx-4 my-4 px-8 py-4 hover:scale-102 transition duration-300 ease-in-out cursor-pointer"
+      onClick={() => {
+        navigate('/blogs/' + item._id);
+      }}
     >
       <h3>
         <span className="font-bold">Title:</span> {item.title}

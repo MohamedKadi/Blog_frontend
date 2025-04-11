@@ -6,6 +6,7 @@ import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import CreateBlog from './pages/createBlog';
+import BlogPage from './pages/BlogPage';
 function Layout() {
   return (
     <>
@@ -25,6 +26,7 @@ function App() {
         { path: '/signup', element: <SignUp /> },
         { path: '/login', element: <Login /> },
         { path: '/create-blog', element: <CreateBlog /> },
+        { path: '/blogs/:id', element: <BlogPage /> },
         { path: '*', element: <NotFound /> },
       ],
     },

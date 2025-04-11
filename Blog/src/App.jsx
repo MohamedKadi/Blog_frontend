@@ -3,6 +3,7 @@ import BlogsPage from './pages/BlogsPage';
 import HomePage from './pages/HomePage';
 import NotFound from './pages/NotFound';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
+import SignUp from './pages/SignUp';
 
 function Layout() {
   return (
@@ -20,6 +21,7 @@ function App() {
       children: [
         { path: '/', element: <HomePage /> },
         { path: '/blogs', element: <BlogsPage /> },
+        { path: '/signup', element: <SignUp /> },
         { path: '*', element: <NotFound /> },
       ],
     },

@@ -29,17 +29,17 @@ const Navbar = () => {
       <div>
         <ul className="flex flex-row justify-between gap-10">
           <li>
-            <a href="" className="hover:text-blue-700 transition-colors">
+            <Link to="/login" className="hover:text-blue-700 transition-colors">
               Log in
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href=""
+            <Link
+              to="/signup"
               className="outline-2 px-8 py-2.5 rounded-full hover:text-blue-700 transition-colors"
             >
               Sign up
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage';
 import NotFound from './pages/NotFound';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import SignUp from './pages/SignUp';
+import Login from './pages/Login';
 
 function Layout() {
   return (
@@ -22,6 +23,7 @@ function App() {
         { path: '/', element: <HomePage /> },
         { path: '/blogs', element: <BlogsPage /> },
         { path: '/signup', element: <SignUp /> },
+        { path: '/login', element: <Login /> },
         { path: '*', element: <NotFound /> },
       ],
     },

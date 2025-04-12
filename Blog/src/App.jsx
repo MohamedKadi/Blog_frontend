@@ -7,6 +7,7 @@ import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import CreateBlog from './pages/createBlog';
 import BlogPage from './pages/BlogPage';
+import MyBlogs from './pages/MyBlogs';
 function Layout() {
   return (
     <>
@@ -27,6 +28,7 @@ function App() {
         { path: '/login', element: <Login /> },
         { path: '/create-blog', element: <CreateBlog /> },
         { path: '/blogs/:id', element: <BlogPage /> },
+        { path: '/myblogs', element: <MyBlogs /> },
         { path: '*', element: <NotFound /> },
       ],
     },

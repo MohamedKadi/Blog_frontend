@@ -7,7 +7,7 @@ const CreateBlog = () => {
   const apiUrl = import.meta.env.VITE_API_URLL;
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [categories, setCategories] = useState('');
+  const [categories, setCategories] = useState('Tech');
   const { user } = useAuth();
   const navigate = useNavigate();
 
@@ -30,7 +30,7 @@ const CreateBlog = () => {
         body: JSON.stringify({
           title: title,
           content: content,
-          categories: categories,
+          categories: [categories],
         }),
       });
       if (!response.ok) {
@@ -95,7 +95,7 @@ const CreateBlog = () => {
             </label>
             <select
               id="countries"
-              onChange={(e) => setCategories([e.target.value])}
+              onChange={(e) => setCategories(e.target.value)}
               className="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             >
               <option>Tech</option>

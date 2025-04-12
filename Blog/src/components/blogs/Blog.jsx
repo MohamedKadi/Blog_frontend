@@ -4,7 +4,7 @@ const Blog = ({ item }) => {
   const navigate = useNavigate();
   return (
     <div
-      key={item.id}
+      key={item._id}
       className="border w-full mx-4 my-4 px-8 py-4 hover:scale-102 transition duration-300 ease-in-out cursor-pointer"
       onClick={() => {
         navigate('/blogs/' + item._id);

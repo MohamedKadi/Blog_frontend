@@ -102,7 +102,7 @@ Blog/
 
 ## API Integration
 
-The application integrates with a RESTful API (Blog API) using the following endpoints:
+The application integrates with a RESTful API (Blog API https://github.com/MohamedKadi/Blog_API) using the following endpoints:
 
 - `POST /api/auth/register` - User registration
 - `POST /api/auth/login` - User login

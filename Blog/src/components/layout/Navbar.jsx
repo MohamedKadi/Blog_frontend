@@ -71,9 +71,12 @@ const Navbar = () => {
               </a>
             </li>
             <li>
-              <a href="" className="hover:text-blue-700 transition-colors">
-                Pricing
-              </a>
+              <Link
+                to="/myblogs"
+                className="hover:text-blue-700 transition-colors"
+              >
+                My Blogs
+              </Link>
             </li>
           </ul>
         </div>

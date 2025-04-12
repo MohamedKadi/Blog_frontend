@@ -15,11 +15,43 @@ const BlogPage = () => {
     createdAt: '',
   });
   const [loading, setLoading] = useState(true);
+  const [edit, setEdit] = useState(false);
+
+  const handleEdit = () => {
+    setEdit(!edit);
+  };
+  const handleSave = async () => {
+    try {
+      setLoading(true);
+      const token = localStorage.getItem('token');
+      const response = await fetch(apiUrl + '/api/posts/' + id, {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title: data.title,
+          content: data.content,
+        }),
+      });
+      if (!response.ok) {
+        console.log(data.title);
+        handleEdit();
+        setLoading(false);
+        throw new Error('something wrong with deleting the blog');
+      }
+      handleEdit();
+      setLoading(false);
+    } catch (error) {
+      console.log('updating Blog error:', error);
+    }
+  };
+
   const handleDelete = async () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      console.log(token);
       const response = await fetch(apiUrl + '/api/posts/' + id, {
         method: 'DELETE',
         headers: {
@@ -69,13 +101,34 @@ const BlogPage = () => {
       <div className="w-full flex justify-center mt-20">
         <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
           <div>
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              {data && data.title}
-            </h5>
+            {edit ? (
+              <input
+                className="mb-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+                value={data && data.title}
+                onChange={(e) =>
+                  setData((prev) => ({ ...prev, title: e.target.value }))
+                }
+              ></input>
+            ) : (
+              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                {data && data.title}
+              </h5>
+            )}
           </div>
-          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            {data && data.content}
-          </p>
+          {edit ? (
+            <input
+              className="mb-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+              value={data && data.content}
+              onChange={(e) =>
+                setData((prev) => ({ ...prev, content: e.target.value }))
+              }
+            ></input>
+          ) : (
+            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+              {data && data.content}
+            </p>
+          )}
+
           <div
             to="#"
             className="mb-2 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 "
@@ -97,12 +150,23 @@ const BlogPage = () => {
               />
             </svg>
           </div>
-          <button
-            type="button"
-            className="cursor-pointer block focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900"
-          >
-            Edit
-          </button>
+          {edit ? (
+            <button
+              type="button"
+              onClick={handleSave}
+              className="cursor-pointer block focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900"
+            >
+              Save
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={handleEdit}
+              className="cursor-pointer block focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900"
+            >
+              Edit
+            </button>
+          )}
 
           <button
             type="button"
